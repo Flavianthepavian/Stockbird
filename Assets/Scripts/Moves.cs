@@ -752,11 +752,45 @@ public class Moves : MonoBehaviour
                 foreach (FEN.FieldPos newPos in new []
                          {
                              new FEN.FieldPos(pos.x, pos.y + 1), new FEN.FieldPos(pos.x + 1, pos.y + 1), new FEN.FieldPos(pos.x + 1, pos.y),
-                             new FEN.FieldPos(pos.x, pos.y + 1)
-                             
+                             new FEN.FieldPos(pos.x + 1, pos.y - 1), new FEN.FieldPos(pos.x, pos.y - 1), new FEN.FieldPos(pos.x - 1, pos.y - 1),
+                             new FEN.FieldPos(pos.x - 1, pos.y), new FEN.FieldPos(pos.x - 1, pos.y + 1)
                          })
                 {
-                    
+                    if (!pieces.ContainsKey(newPos))
+                    {
+                        continue;
+                    }
+                    if (pieces[newPos] == Piece.Empty)
+                    {
+                        moves.Add("K" + getFieldNotation(pos.x, pos.y) + "-" + getFieldNotation(newPos.x, newPos.y));
+                    }
+                    else if (pieces[newPos].ToString().StartsWith("Black"))
+                    {
+                        moves.Add("K" + getFieldNotation(pos.x, pos.y) + "x" + getFieldNotation(newPos.x, newPos.y));
+                    }
+                }
+            }
+            if (piece == Piece.BlackKing)
+            {
+                foreach (FEN.FieldPos newPos in new []
+                         {
+                             new FEN.FieldPos(pos.x, pos.y + 1), new FEN.FieldPos(pos.x + 1, pos.y + 1), new FEN.FieldPos(pos.x + 1, pos.y),
+                             new FEN.FieldPos(pos.x + 1, pos.y - 1), new FEN.FieldPos(pos.x, pos.y - 1), new FEN.FieldPos(pos.x - 1, pos.y - 1),
+                             new FEN.FieldPos(pos.x - 1, pos.y), new FEN.FieldPos(pos.x - 1, pos.y + 1)
+                         })
+                {
+                    if (!pieces.ContainsKey(newPos))
+                    {
+                        continue;
+                    }
+                    if (pieces[newPos] == Piece.Empty)
+                    {
+                        moves.Add("K" + getFieldNotation(pos.x, pos.y) + "-" + getFieldNotation(newPos.x, newPos.y));
+                    }
+                    else if (!pieces[newPos].ToString().StartsWith("Black"))
+                    {
+                        moves.Add("K" + getFieldNotation(pos.x, pos.y) + "x" + getFieldNotation(newPos.x, newPos.y));
+                    }
                 }
             }
         }
