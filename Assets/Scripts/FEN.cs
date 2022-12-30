@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Chess;
 using UnityEngine;
@@ -53,7 +52,7 @@ public class FEN : MonoBehaviour
         }
     }
 
-    FieldPos getFieldPos(int index)
+    public static FieldPos getFieldPos(int index)
     {
         return new FieldPos(index % 8, (index - index % 8) / 8 * -1);
     }

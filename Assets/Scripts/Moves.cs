@@ -797,7 +797,7 @@ public class Moves : MonoBehaviour
         return moves;
     }
 
-    static string getFieldNotation(int x, int y)
+    public static string getFieldNotation(int x, int y)
     {
         string field = "";
         if (x == 0)
@@ -843,6 +843,44 @@ public class Moves : MonoBehaviour
         field += (y + 8).ToString();
 
         return field;
+    }
+    
+    public static FEN.FieldPos getVectorPosition(string fieldPos)
+    {
+        FEN.FieldPos pos = new FEN.FieldPos();
+
+        if (fieldPos[0] == 'b')
+        {
+            pos.x = 1;
+        }
+        else if (fieldPos[0] == 'c')
+        {
+            pos.x = 2;
+        }
+        else if (fieldPos[0] == 'd')
+        {
+            pos.x = 3;
+        }
+        else if (fieldPos[0] == 'e')
+        {
+            pos.x = 4;
+        }
+        else if (fieldPos[0] == 'f')
+        {
+            pos.x = 5;
+        }
+        else if (fieldPos[0] == 'g')
+        {
+            pos.x = 6;
+        }
+        else if (fieldPos[0] == 'h')
+        {
+            pos.x = 7;
+        }
+
+        pos.y = Int32.Parse(fieldPos[1].ToString()) - 8;
+        
+        return pos;
     }
 }
 
