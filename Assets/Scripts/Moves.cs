@@ -769,6 +769,15 @@ public class Moves : MonoBehaviour
                         moves.Add("K" + getFieldNotation(pos.x, pos.y) + "x" + getFieldNotation(newPos.x, newPos.y));
                     }
                 }
+
+                if (FEN.CastleRight.WhiteKing)
+                {
+                    moves.Add("Ke1-g1");
+                }
+                if (FEN.CastleRight.WhiteQueen)
+                {
+                    moves.Add("Ke1-c1");
+                }
             }
             if (piece == Piece.BlackKing)
             {
@@ -791,6 +800,14 @@ public class Moves : MonoBehaviour
                     {
                         moves.Add("K" + getFieldNotation(pos.x, pos.y) + "x" + getFieldNotation(newPos.x, newPos.y));
                     }
+                }
+                if (FEN.CastleRight.BlackKing)
+                {
+                    moves.Add("Ke8-g8");
+                }
+                if (FEN.CastleRight.BlackQueen)
+                {
+                    moves.Add("Ke8-c8");
                 }
             }
         }

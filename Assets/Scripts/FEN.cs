@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using Chess;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -24,7 +25,7 @@ public class FEN : MonoBehaviour
 
     public TileBase[] pieceSources;
 
-    private Dictionary<string, TileBase> Bases = new Dictionary<string, TileBase>();
+    public static Dictionary<string, TileBase> Bases = new Dictionary<string, TileBase>();
 
     public struct FieldPos
     {
@@ -119,15 +120,10 @@ public class FEN : MonoBehaviour
             enPassant = fen.Split(' ')[3];
         }
         
+        print(fen);
         halfMove = Int32.Parse(fen.Split(' ')[4]);
 
         move = Int32.Parse(fen.Split(' ')[5]);
-
-
-        foreach (string move in Moves.getMoves(pieces))
-        {
-            print(move);
-        }
     }
 
     int getFieldIndex(string field)
@@ -194,9 +190,42 @@ public class FEN : MonoBehaviour
         
         return index;
     }
+
+    public static string GetFenFromDict(Dictionary<FieldPos, Piece> dict)
+    {
+        string fen = "";
+
+        foreach (int y in new []{0, -1 , -2, -3, -4, -5, -6, -7})
+        {
+            int space = 0;
+            foreach (int x in new []{0, 1, 2, 3, 4, 5, 6, 7})
+            {
+                if (dict[new FieldPos(x, y)] == Piece.Empty)
+                {
+                    space++;
+                }
+                else
+                {
+                    if (space != 0)
+                    {
+                        fen += space.ToString();
+                    }
+
+                    fen += Pieces.GetPieceNotation(dict[new FieldPos(x, y)]);
+                    space = 0;
+                }
+                
+            }
+
+            if (space != 0)
+            {
+                fen += space.ToString();
+            }
+            fen += "/";
+        }
+
+        fen = fen.TrimStart('/');
+        fen = fen.TrimEnd('/');
+        return fen;
+    }
 }
-
-
-
-
-

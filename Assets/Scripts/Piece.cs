@@ -71,5 +71,54 @@ namespace Chess
             }
             return Piece.Empty;
         }
+        
+        public static string GetPieceNotation(Piece piece)
+        {
+            if (piece == Piece.Pawn)
+            {
+                return "P";
+            }
+            if (piece == Piece.BlackPawn)
+            {
+                return "p";
+            }
+            if (piece == Piece.Rook)
+            {
+                return "R";
+            }
+            if (piece == Piece.BlackRook)
+            {
+                return "r";
+            }
+            if (piece == Piece.Knight)
+            {
+                return "N";
+            }
+            if (piece == Piece.BlackKnight)
+            {
+                return "n";
+            }
+            if (piece == Piece.Bishop)
+            {
+                return "B";
+            }
+            if (piece == Piece.BlackBishop)
+            {
+                return "b";
+            }
+            if (piece == Piece.Queen)
+            {
+                return "Q";
+            }
+            if (piece == Piece.BlackQueen)
+            {
+                return "q";
+            }
+            if (piece == Piece.King)
+            {
+                return "K";
+            }
+            return "k";
+        }
     }
 }
